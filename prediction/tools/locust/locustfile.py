@@ -21,7 +21,6 @@ from requests.auth import AuthBase
 from urllib.parse import urlparse
 from google.cloud.storage.client import Client as GCSClient
 from io import BytesIO
-import re
 import json
 import os
 import random
@@ -106,7 +105,7 @@ class CloudAIUser(OAuth2Locust):
             file_uri = file_url
         else:
             if parsed_url.netloc == GCS_HOST:
-                file_uri = "gs:/{}".format(file_path)
+                file_uri = "gs:/{}".format(file_url)
             else:
                 raise Exception("Host URL is not a Google Cloud Storage URI: {}".format(file_url))
 
